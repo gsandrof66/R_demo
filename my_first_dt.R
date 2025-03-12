@@ -1,15 +1,10 @@
 library(data.table)
 library(dplyr)
+library(plotly)
 
-my_data <- fread("./Facebook_Ads_2.csv",
-                 select = c("Country", "Salary"))
+source("./my_functions.R")
 
-glimpse(my_data)
+data <- load_data(5)
 
-data <- my_data |> 
-  summarise(total = sum(Salary, na.rm = TRUE),
-            .by="Country")
-
-glimpse(data)
-
-View(data)
+fig <- draw_plot(data)
+fig
